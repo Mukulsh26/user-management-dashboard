@@ -1,4 +1,3 @@
-// src/pages/auth/signup.js
 import AuthForm from "@/components/AuthForm";
 import Link from "next/link";
 

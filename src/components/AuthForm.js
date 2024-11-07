@@ -1,4 +1,3 @@
-// src/components/AuthForm.js
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginStart, loginSuccess, loginFailure } from '../redux/slices/authSlice';
@@ -10,7 +9,7 @@ const AuthForm = ({ isLogin }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState(''); // New role state with a default value
+    const [role, setRole] = useState(''); 
     const dispatch = useDispatch();
     const router = useRouter();
 
@@ -42,7 +41,7 @@ const AuthForm = ({ isLogin }) => {
                 const response = await fetch('/api/auth/signup', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, password, role }), // Send role in request body
+                    body: JSON.stringify({ name, email, password, role }), 
                 });
 
                 if (response.ok) {

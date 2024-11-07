@@ -1,4 +1,3 @@
-// src/components/UserProfile.js
 import { useSession } from 'next-auth/react';
 
 const UserProfile = () => {

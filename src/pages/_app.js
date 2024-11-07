@@ -1,7 +1,6 @@
-// src/pages/_app.js
 import { SessionProvider } from 'next-auth/react';
 import { Provider } from 'react-redux';
-import store from '../redux/store';  // Ensure this path is correct
+import store from '../redux/store';  
 import '../styles/globals.css';
 
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }) {

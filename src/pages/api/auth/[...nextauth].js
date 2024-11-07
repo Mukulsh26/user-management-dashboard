@@ -1,4 +1,3 @@
-// src/pages/api/auth/[...nextauth].js
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
@@ -18,7 +17,6 @@ export default NextAuth({
                 const user = await User.findOne({ email: credentials.email });
 
                 if (user && bcrypt.compareSync(credentials.password, user.password)) {
-                    // Include role in the returned user object
                     return { id: user._id, email: user.email, role: user.role };
                 }
                 return null;
@@ -26,19 +24,19 @@ export default NextAuth({
         }),
     ],
     session: {
-        strategy: 'jwt', // This tells NextAuth to use JWT tokens for sessions
+        strategy: 'jwt', 
     },
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
                 token.id = user.id;
-                token.role = user.role;  // Store role in JWT
+                token.role = user.role;  
             }
             return token;
         },
         async session({ session, token }) {
             session.user.id = token.id;
-            session.user.role = token.role;  // Attach role to session
+            session.user.role = token.role;  
             return session;
         },
     },

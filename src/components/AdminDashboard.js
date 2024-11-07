@@ -52,7 +52,7 @@ const AdminDashboard = () => {
             const res = await fetch(`/api/users?userId=${userId}`, {
                 method: 'DELETE',
                 headers: {
-                    'Authorization': `Bearer ${session?.accessToken}`, // Use saved session token
+                    'Authorization': `Bearer ${session?.accessToken}`,
                 },
             });
             if (res.ok) {
@@ -77,7 +77,7 @@ const AdminDashboard = () => {
             const res = await fetch(`/api/users?userId=${userId}`, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${session.accessToken}`, // Use accessToken from session
+                    'Authorization': `Bearer ${session.accessToken}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ role: newRole }),

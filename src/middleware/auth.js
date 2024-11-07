@@ -1,4 +1,3 @@
-// src/middleware/auth.js
 import { getSession } from 'next-auth/react';
 
 export const requireAdmin = async (req, res, next) => {
