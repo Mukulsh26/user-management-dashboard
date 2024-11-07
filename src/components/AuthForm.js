@@ -108,7 +108,7 @@ const AuthForm = ({ isLogin }) => {
 
                 <p className="mt-4 text-center text-black">
                     {isLogin ? (
-                        <>Don't have an account? <Link href="/signup" className="text-blue-500 hover:underline">Sign Up</Link></>
+                        <>Don&apos;t have an account? <Link href="/signup" className="text-blue-500 hover:underline">Sign Up</Link></>
                     ) : (
                         <>Already have an account? <Link href="/login" className="text-green-500 hover:underline">Login</Link></>
                     )}
