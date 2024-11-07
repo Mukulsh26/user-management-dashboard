@@ -6,7 +6,7 @@ const AdminDashboard = () => {
     const [users, setUsers] = useState([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
-    const [selectedUser , setSelectedUser ] = useState(null);
+    const [selectedUser, setSelectedUser] = useState(null);
     const [newRole, setNewRole] = useState('');
 
     const fetchUsers = async () => {
@@ -39,7 +39,7 @@ const AdminDashboard = () => {
         }
     }, [session]);
 
-    const deleteUser  = async (userId) => {
+    const deleteUser = async (userId) => {
         const session = JSON.parse(localStorage.getItem('session'));
 
         if (!session) {
@@ -86,7 +86,7 @@ const AdminDashboard = () => {
             const data = await res.json();
 
             if (res.ok) {
-                console.log('User  role updated successfully:', data.updatedUser );
+                console.log('User  role updated successfully:', data.updatedUser);
                 // Refresh users after updating the role
                 fetchUsers();
             } else {
@@ -108,6 +108,7 @@ const AdminDashboard = () => {
                 <table className="min-w-full bg-white rounded-lg shadow overflow-hidden">
                     <thead className="bg-gray-800 text-white">
                         <tr>
+                            <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Name</th>
                             <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Email</th>
                             <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Role</th>
                             <th className="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">Actions</th>
@@ -116,18 +117,19 @@ const AdminDashboard = () => {
                     <tbody>
                         {users.map((user) => (
                             <tr key={user._id} className="hover:bg-gray-100">
-                                <td className="px-6 py-4 text-sm text-gray-700">{user .email}</td>
+                                <td className="px-6 py-4 text-sm text-gray-700">{user.name}</td> 
+                                <td className="px-6 py-4 text-sm text-gray-700">{user.email}</td> 
                                 <td className="px-6 py-4 text-sm text-gray-700 capitalize">{user.role}</td>
                                 <td className="px-6 py-4 text-sm text-gray-700">
                                     <button
-                                        onClick={() => deleteUser (user._id)}
+                                        onClick={() => deleteUser(user._id)}
                                         className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded shadow mr-2"
                                     >
                                         Delete
                                     </button>
                                     <button
                                         onClick={() => {
-                                            setSelectedUser (user._id);
+                                            setSelectedUser(user._id);
                                             setNewRole(user.role);
                                         }}
                                         className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow"
@@ -142,7 +144,7 @@ const AdminDashboard = () => {
             )}
 
             {/* Update Role Modal */}
-            {selectedUser  && (
+            {selectedUser && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-8 rounded-lg shadow-lg w-96">
                         <h3 className="text-xl font-semibold mb-4 text-black">Update User Role</h3>
@@ -157,15 +159,15 @@ const AdminDashboard = () => {
                         </select>
                         <div className="flex justify-between">
                             <button
-                                onClick={() => setSelectedUser (null)}
+                                onClick={() => setSelectedUser(null)}
                                 className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded shadow"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={() => {
-                                    updateUserRole(selectedUser , newRole); // Pass newRole here
-                                    setSelectedUser (null);
+                                    updateUserRole(selectedUser, newRole); // Pass newRole here
+                                    setSelectedUser(null);
                                     setNewRole(''); // Reset the role after updating
                                 }}
                                 className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded shadow"
